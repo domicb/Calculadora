@@ -26,7 +26,8 @@
 
     <style>
         table > tbody > tr > td {
-            padding-right: 10px
+            padding-right: 10px;
+            padding-top: 8px;
         }
 
         table > tbody > tr > td:last-child {
@@ -40,6 +41,7 @@
             text-align: center;
             color: gray;
         }
+
     </style>
 
 </head>
@@ -69,24 +71,63 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-xs-6 col-md-4 border">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius aliquam praesentium a non alias error nostrum voluptate similique accusamus sapiente. Recusandae corporis quo voluptas sint fugit, repudiandae hic illum saepe?</div>
-                </div>
+               <!-- <div class="row">
+                    <div class="col-xs-6 col-md-4 border"></div>
+                </div>-->
 
-                <div class="row">
-                    <div class="col-md-4" id="calc">
+                <div class="row" >
+                    <div class="col-md-4 col-md-offset-4" id="calc">
                         <h1>Calculadora</h1>
-                                <div class="panel panel-info">
+                            <div class="panel panel-info">
                                   <div class="panel-heading">
-                                    <h3 class="panel-title">Calculadora</h3>
+                                    <h3 class="panel-title">Simulacion calculadora de windows</h3>
                                   </div>
                                   <div class="panel-body">
                                     <table>
+                                        <tr>                                        
+                                            <form action="calculadora.js">                                               
+                                                <textarea class="form-control" rows="2"></textarea>
+                                            </form>                                       
+                                        </tr>
+                                         <tr><!--fila 0-->
+                                            <td><button type="button" class="btn btn-default btn-lg">%</button></td>
+                                            <td><button type="button" class="btn btn-default btn-lg">&nbsp;C&nbsp;</button></td>
+                                            <td><button type="button" class="btn btn-default btn-lg"><−</button></td>
+                                            <td><button type="button" class="btn btn-primary btn-lg">&nbsp;÷&nbsp;</button></td>
+                                            
+                                        </tr>
+                                        <tr><!--Primera fila-->
+                                            <td><button type="button" class="btn btn-default btn-lg">CE</button></td>
+                                            <td><button type="button" class="btn btn-default btn-lg">&nbsp;C&nbsp;</button></td>
+                                            <td><button type="button" class="btn btn-default btn-lg"><−</button></td>
+                                            <td><button type="button" class="btn btn-primary btn-lg">&nbsp;÷&nbsp;</button></td>
+                                            
+                                        </tr>
                                         
-                                        <tr>
-                                            <td><button type="button" class="btn btn-default">7</button></td>
-                                            <td><button type="button" class="btn btn-default">8</button></td>
-                                            <td><button type="button" class="btn btn-default">9</button></td>
+                                        <tr><!--Segunda fila-->
+                                            <td><button type="button" class="btn btn-default btn-lg">&nbsp;7&nbsp;</button></td>
+                                            <td><button type="button" class="btn btn-default btn-lg">&nbsp;8&nbsp;</button></td>
+                                            <td><button type="button" class="btn btn-default btn-lg">&nbsp;9&nbsp;</button></td>
+                                            <td><button type="button" class="btn btn-primary btn-lg">&nbsp;x&nbsp;</button></td>
+                                            
+                                        </tr>
+                                         <tr><!--Tercera fila-->
+                                            <td><button type="button" class="btn btn-default btn-lg">&nbsp;4&nbsp;</button></td>
+                                            <td><button type="button" class="btn btn-default btn-lg">&nbsp;5&nbsp;</button></td>
+                                            <td><button type="button" class="btn btn-default btn-lg">&nbsp;6&nbsp;</button></td>
+                                            <td><button type="button" class="btn btn-primary btn-lg">&nbsp;−&nbsp;</button></td>                                      
+                                        </tr>
+                                        <tr><!--Cuarta fila-->
+                                            <td><button type="button" class="btn btn-default btn-lg">&nbsp;1&nbsp;</button></td>
+                                            <td><button type="button" class="btn btn-default btn-lg">&nbsp;2&nbsp;</button></td>
+                                            <td><button type="button" class="btn btn-default btn-lg">&nbsp;3&nbsp;</button></td>
+                                            <td><button type="button" class="btn btn-primary btn-lg">&nbsp;+&nbsp;</button></td>
+                                        </tr>
+                                        <tr><!--Cuarta fila-->
+                                            <td><button type="button" class="btn btn-default btn-lg">+/-</button></td>
+                                            <td><button type="button" class="btn btn-default btn-lg">&nbsp;0&nbsp;</button></td>
+                                            <td><button type="button" class="btn btn-default btn-lg">&nbsp;,&nbsp;</button></td>
+                                            <td><button type="button" class="btn btn-success btn-lg">&nbsp;=&nbsp;</button></td>
                                         </tr>
 
                                     </table>
