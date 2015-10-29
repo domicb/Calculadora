@@ -24,6 +24,24 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+        table > tbody > tr > td {
+            padding-right: 10px
+        }
+
+        table > tbody > tr > td:last-child {
+            padding-right: 0;
+        }
+        .border {
+            border: 1px solid gray;
+        }
+
+        footer {
+            text-align: center;
+            color: gray;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -39,10 +57,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#" onclick="ola()">Calculadora</a>
+                    <a href="#" id="botonCalc">Calculadora</a>
                 </li>
                 <li>
-                    <a href="#">Agenda</a>
+                    <a href="#" id="botonAgen">Agenda</a>
                 </li>
             </ul>
         </div>
@@ -52,13 +70,35 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-4 col md-offset-6">
-                        <h1>Calculadora</h1>
+                    <div class="col-xs-6 col-md-4 border">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius aliquam praesentium a non alias error nostrum voluptate similique accusamus sapiente. Recusandae corporis quo voluptas sint fugit, repudiandae hic illum saepe?</div>
+                </div>
 
-     
+                <div class="row">
+                    <div class="col-md-4" id="calc">
+                        <h1>Calculadora</h1>
                                 <div class="panel panel-info">
                                   <div class="panel-heading">
                                     <h3 class="panel-title">Calculadora</h3>
+                                  </div>
+                                  <div class="panel-body">
+                                    <table>
+                                        
+                                        <tr>
+                                            <td><button type="button" class="btn btn-default">7</button></td>
+                                            <td><button type="button" class="btn btn-default">8</button></td>
+                                            <td><button type="button" class="btn btn-default">9</button></td>
+                                        </tr>
+
+                                    </table>
+                                  </div>
+                                </div>
+                        <a href="#menu-toggle" onclick="ola();" class="btn btn-default" id="menu-toggle">Pantalla única</a>
+                    </div>
+                    <div class="col-md-4" id="agen">
+                        <h1>Agenda</h1>
+                                <div class="panel panel-info">
+                                  <div class="panel-heading">
+                                    <h3 class="panel-title">Agenda</h3>
                                   </div>
                                   <div class="panel-body">
                                     <table>
@@ -78,11 +118,12 @@
             </div>
         </div>
        <!-- /#page-content-wrapper -->
-    
-    
+        <div class="row">
+        <footer class="col-md-12">
+            <p>Desing by <strong>Carrasco Bueno</strong></p>
+        </footer>
     </div>
-    <div class="col-md-6 col-md-offset-6">
-    <p>Desing by Carrasco Bueno</p>
+    
     </div>
     <!-- /#wrapper -->
 
@@ -91,13 +132,32 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
     <!-- Menu Toggle Script -->
     <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
+        $(document).ready(function(){
+            $('#agen').hide();
+
+            // Botones
+            $('#botonCalc').click(function(){
+                $('#agen').slideUp(300);
+                setTimeout(function(){
+                    $('#calc').slideDown(300);
+                }, 300);
+            });
+
+            $('#botonAgen').click(function(){
+                $('#calc').fadeOut(300);
+                setTimeout(function(){
+                    $('#agen').fadeIn(300);
+                }, 300);
+            });
+
+            // Menu
+            $("#menu-toggle").click(function(e) {
+                e.preventDefault();
+                $("#wrapper").toggleClass("toggled");
+            });
+        });
     </script>
 
 </body>
