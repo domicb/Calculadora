@@ -38,6 +38,14 @@ function setNumero(num)
 	document.getElementById('entrada').value=anterior+num;
 }
 
+//funcion que devolvera la raiz cuadrada
+function raiz()
+{
+	var valor=fo.entrada.value;
+	var re=Math.sqrt(valor);
+	document.getElementById('entrada').value=re;
+}
+
 //eliminamos el ultimo valor
 function eliminar()
 {
