@@ -153,3 +153,34 @@ function cambia()
 		document.fo.entrada.value=salida1;
 	}
 }
+
+function porcentaje()
+{
+	var cantidad = document.fo.entrada.value;
+	var por = cantidad / 100 ;
+	var porce = por * cantidad;
+	document.fo.entrada.value=por;
+}
+
+function mostrar()
+{
+    var contactos = new Array();
+    var datos = new Array(4);
+
+    contactos[0]='Primero';
+    datos[0]='Domingo';
+    datos[1]='Carrasco Bueno';
+    datos[2]='603781212';
+    datos[3]='24/12/1987';
+
+    for (var i= 0;i < contactos.length ; i++) 
+    {
+        document.write('Registro '+contactos[i]);
+        document.write('<br>');
+        for (var a= 0;a < datos.length; a++) 
+        {
+            document.write(datos[a]);
+            document.write('<br>');
+        }
+    }
+}
