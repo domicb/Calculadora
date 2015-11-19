@@ -137,27 +137,30 @@
                             </table>
                           </div>
                         </div>
-                <a href="#menu-toggle" onclick="ola();" class="btn btn-default" id="menu-toggle">Pantalla única</a>
+                <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Pantalla única</a>
             </div>
+            <!-- *****          AGENDA      ************** -->
             <div class="row">
-            <div class="col-md-4 col-md-offset-4" id="agen">
+            <div class="col-md-6 col-md-offset-2" id="agen">
                 <h1>Agenda</h1>
                         <div class="panel panel-info">
                           <div class="panel-heading">
                             <h3 class="panel-title">Agenda</h3>
                           </div>
-                          <div class="panel-body">
-                            <table>                     
-                                <tr>
+                          <div class="panel-body"> 
+                            <div class="row"> 
+                                <div class="col-md-6">             
                                     Registro
-                                    <td><button type="button" class="btn btn-default"><<</button></td>
-                                    <td><button type="button" class="btn btn-default"><</button></td>
-                                    <td>Num página</td>
-                                    <td><button type="button" class="btn btn-default">></button></td>
-                                    <td><button type="button" class="btn btn-default">>></button></td>                                                                                                         
-                                    <td><button type="button" onClick="mostrar()" class="btn btn-default">MOSTRAR</button></td>
-                                <tr>
-                            </table>
+                                    <button type="button" class="btn btn-default"><<</button>
+                                    <button type="button" class="btn btn-default"><</button>
+                                </div>
+                                <div class="col-md-8">
+                                    Num página
+                                    <button type="button" class="btn btn-default">></button>
+                                    <button type="button" class="btn btn-default">>></button>                      
+                                    <button type="button" onClick="mostrar()" class="btn btn-default">MOSTRAR</button>
+                                </div>
+                            </div>
                           </div><!-- Se cierra panel body -->
                         </div>
                         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Pantalla única</a>

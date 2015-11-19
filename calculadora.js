@@ -100,23 +100,23 @@ else
 			b=i;//guardamos la posicion
 		}
 	}
-		if(igual>record)
-		{
-			record=igual;
-			letraRecor=letra;
-		}
+	if(igual>record)
+	{
+		record=igual;
+		letraRecor=letra;
+	}
 
-		if(record>2)
-		{
-			var anterior = campo;
-			var nuevovalor = anterior.substring(0,anterior.length-1);
-			document.getElementById('entrada').value=nuevovalor;
-			record=0;
-			b=0;
-			igual=1;
-			letra="";
-			letraRecor="";
-		}
+	if(record>2)
+	{
+		var anterior = campo;
+		var nuevovalor = anterior.substring(0,anterior.length-1);
+		document.getElementById('entrada').value=nuevovalor;
+		record=0;
+		b=0;
+		igual=1;
+		letra="";
+		letraRecor="";
+	}
 	}
 }
 
@@ -162,10 +162,12 @@ function porcentaje()
 	document.fo.entrada.value=por;
 }
 
-function mostrar()
-{
-    var contactos = new Array();
-    var datos = new Array(4);
+
+
+//            ****************         AGENDA          *********
+//algunas variables
+var contactos = new Array();
+var datos = new Array(4);
 
     contactos[0]='Primero';
     datos[0]='Domingo';
@@ -173,6 +175,8 @@ function mostrar()
     datos[2]='603781212';
     datos[3]='24/12/1987';
 
+function resumen()
+{
     for (var i= 0;i < contactos.length ; i++) 
     {
         document.write('Registro '+contactos[i]);
@@ -184,3 +188,31 @@ function mostrar()
         }
     }
 }
+
+function mostrarContacto(con)
+{
+        document.write('Registro '+contactos[con]);
+        document.write('<br>');
+        for (var a= 0;a < datos.length; a++) 
+        {
+            document.write(datos[a]);
+            document.write('<br>');
+        }
+}
+
+/*
+function insertar()
+{
+    var longitud = contactos.length;
+    var nuevo = new Array(4);
+
+    nuevo[0] = getElementById contenodor nombre..
+    nuevo[1] = getElementById contenedor formulario..
+    nuevo[2] = getElementById
+    nuevo[3] = getElementById
+
+    contactos.push(nuevo);//lo metemos al final
+
+    //mostramos el fin de la agenda
+    document.getElementById('final')=.innerHTML= contactos.length;
+}*/
