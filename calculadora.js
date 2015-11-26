@@ -49,9 +49,9 @@ function raiz()
 //eliminamos el ultimo valor
 function eliminar()
 {
-var anterior=document.fo.entrada.value;
-var nuevovalor=anterior.substring(0,anterior.length-1);
-document.getElementById('entrada').value=nuevovalor;
+    var anterior=document.fo.entrada.value;
+    var nuevovalor=anterior.substring(0,anterior.length-1);
+    document.getElementById('entrada').value=nuevovalor;
 }
 
 //dejamos el campo de entrada vacio
@@ -118,13 +118,32 @@ else
 		letraRecor="";
 	}
 	}
+
+    mostrar();
 }
 
+//pasamos el valor al input de arriva y lo borramos de abajo
+function mostrar()
+{
+    var ten = document.fo.entrada.value; //= document.fo.entrada.value;
+    var mos = document.fo.arriva.value;
+    document.fo.arriva.value=mos+ten;
+    limpiar();
+}
+
+//limpia todo
+function todo()
+{
+    document.getElementById('arriva').value="";
+    document.getElementById('entrada').value="";
+}
 //operamos el contenido del texarea
 function operar()
 {
-	var resultado = eval(document.fo.entrada.value);
-
+    var tiene = document.fo.arriva.value;
+    var cuenta = tiene + document.fo.entrada.value;
+	var resultado = eval(cuenta);
+    todo();//limpiamos antes de mostrar el resultado
 	document.fo.entrada.value=resultado;
 }
 
@@ -135,6 +154,13 @@ function div()
 	var numero = document.fo.entrada.value;
 	res = resultado/numero;
    	document.fo.entrada.value=res;
+}
+
+function elevado()
+{
+    var operando = document.fo.entrada.value;
+    var operador = operando*2;
+    document.fo.entrada.value = eval(operador);
 }
 
 //cambiamos el signo
@@ -164,7 +190,9 @@ function porcentaje()
 
 
 
+
 //            ****************         AGENDA          *********
+
 //algunas variables
 var contactos = new Array();
 var datos = new Array(4);
