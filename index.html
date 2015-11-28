@@ -64,7 +64,7 @@
 
 </head>
 
-<body>
+<body onload="cargaPrimeros()"><!-- Cargamos ya los datos de la agenda -->
 
     <div id="wrapper">
 
@@ -153,34 +153,115 @@
                         </div>
                 <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Pantalla única</a>
             </div>
+
             <!-- *****          AGENDA      ************** -->
-            <div class="row">
-            <div class="col-md-6 col-md-offset-2" id="agen">
-                <h1>Agenda</h1>
-                        <div class="panel panel-info">
-                          <div class="panel-heading">
-                            <h3 class="panel-title">Agenda</h3>
-                          </div>
-                          <div class="panel-body"> 
-                            <div class="row"> 
-                                <div class="col-md-6">             
-                                    Registro
-                                    <button type="button" class="btn btn-default"><<</button>
-                                    <button type="button" class="btn btn-default"><</button>
+            <div class="row" style="display: none" id="agen">
+                <div class="col-md-8 col-md-offset-2">
+                    
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Registro
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="btn-group" role="group" aria-label="..." style="margin-bottom: 10px">
+                                              <button type="button" class="btn btn-default" onClick="menos()"><span class="glyphicon glyphicon-triangle-left"></span></button>
+                                              <!-- Aqui controlamos el numero de registro -->
+                                                <label class="control-label">&nbsp; 
+                                                    <span name="inicio" id="inicio">  </span>
+                                                        de 
+                                                    <span name="fin" id="fin">&nbsp;&nbsp;</span>
+                                                &nbsp;</label>
+                                              <button type="button" class="btn btn-default" onClick="mas()"><span class="glyphicon glyphicon-triangle-right"></span></button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-8">
-                                    Num página
-                                    <button type="button" class="btn btn-default">></button>
-                                    <button type="button" class="btn btn-default">>></button>                      
-                                    <button type="button" onClick="mostrar()" class="btn btn-default">MOSTRAR</button>
+                                <div class="col-md-6">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Mostrar
+                                        </div>
+                                        <div class="panel-body">
+                                            <div style="margin-bottom: 10px">
+                                                Mostrar: <input type="number" id="con" name="con" class="form-control">
+                                            </div>
+                                            <div>
+                                                <button id="botonMostrar" class="btn btn-default" onClick="mostrarContacto(value)">Mostrar <span class="glyphicon glyphicon-eye-open"></span></button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                          </div><!-- Se cierra panel body -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            Editar
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row" style="margin-bottom: 10px">
+                                                <div class="col-md-6">
+                                                    <label for="nombre">Nombre:</label>
+                                                    <input type="text" id="nombre" name="nombre" class="form-control">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button class="btn btn-default" onClick="vaciar()" style="float: right">Nuevo</button>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="margin-bottom: 10px">
+                                                <div class="col-md-6">
+                                                    <label for="apellidos">Apellidos:</label>
+                                                    <input type="text" id="apellidos" name="apellidos" class="form-control">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <button class="btn btn-default" onClick="nuevo()" style="float: right">Guardar</button>
+                                                </div>
+                                            </div>  
+                                            <div class="row" style="margin-bottom: 10px">
+                                                <div class="col-md-6">
+                                                    <label for="telefono">Teléfono:</label>
+                                                    <input type="text" id="telefono" name="telefono" class="form-control">
+                                                </div>
+                                            </div>  
+                                            <div class="row" style="margin-bottom: 10px">
+                                                <div class="col-md-6">
+                                                    <label for="nacimiento">Fecha de Nacimiento:</label>
+                                                    <input type="text" id="nacimiento" name="nacimiento" class="form-control">
+                                                </div>
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row col-md-12">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">Registros</div>
+                                    <div class="panel-body">
+                                        <table class="table table-hover" id="tablaresumen">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Nombre</th>
+                                                        <th>Apellidos</th>
+                                                        <th>Teléfono</th>
+                                                        <th>Fecha de Nacimiento</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="resumen">
+                                                    <!---DATOS-->
+                                                </tbody> 
+                                            </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Pantalla única</a>
                     </div>
                 </div>
-                </div>
+            </div>
             </div>
         </div>
        <!-- /#page-content-wrapper -->
@@ -201,20 +282,19 @@
     <!-- Menu Toggle Script -->
     <script>
         $(document).ready(function(){
-            $('#agen').hide();
 
             // Botones
             $('#botonCalc').click(function(){
-                $('#agen').slideUp(300);
+                $('#agen').fadeToggle(300);
                 setTimeout(function(){
-                    $('#calc').slideDown(300);
+                    $('#calc').fadeToggle(300);
                 }, 300);
             });
 
             $('#botonAgen').click(function(){
-                $('#calc').fadeOut(300);
+                $('#calc').fadeToggle(300);
                 setTimeout(function(){
-                    $('#agen').fadeIn(300);
+                    $('#agen').fadeToggle(300);
                 }, 300);
             });
 

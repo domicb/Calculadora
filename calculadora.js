@@ -194,53 +194,141 @@ function porcentaje()
 //            ****************         AGENDA          *********
 
 //algunas variables
+var agenda = new Array();
 var contactos = new Array();
-var datos = new Array(4);
-
-    contactos[0]='Primero';
-    datos[0]='Domingo';
-    datos[1]='Carrasco Bueno';
-    datos[2]='603781212';
-    datos[3]='24/12/1987';
 
 function resumen()
 {
-    for (var i= 0;i < contactos.length ; i++) 
-    {
-        document.write('Registro '+contactos[i]);
-        document.write('<br>');
-        for (var a= 0;a < datos.length; a++) 
-        {
-            document.write(datos[a]);
-            document.write('<br>');
-        }
-    }
+	for(var i = 0; i < agenda.length; i++) {
+		// Creamos nodos de tipo Element 
+	    var tr = document.createElement("tr"); 
+	    var td = document.createElement("td"); 	
+		var id = document.createTextNode(i + 1); // Crear nodo de tipo Text con el id
+
+		td.appendChild(id); // Añadimos al td el id
+		tr.appendChild(td); //Añadimos al tr el td
+
+		for(var j = 0; j < 4; j++){ //Recorre cada Contacto
+			
+			var contacto = agenda[i];	
+			var td = document.createElement("td"); 
+
+			// Crear nodo de tipo Text 
+			var contenido = document.createTextNode(contacto[j]); 
+
+			// Añadir el nodo Text como hijo del nodo 	Element 
+			td.appendChild(contenido); 
+
+			tr.appendChild(td); 
+
+			// Añadir el nodo Element como hijo de la pagina 
+			document.getElementById('resumen').appendChild(tr);
+		}
+		
+	}
 }
 
-function mostrarContacto(con)
+function mostrarContacto()
 {
-        document.write('Registro '+contactos[con]);
-        document.write('<br>');
-        for (var a= 0;a < datos.length; a++) 
-        {
-            document.write(datos[a]);
-            document.write('<br>');
-        }
+	//recojemos el id a mostrar
+	var pos = document.getElementById('con').value - 1; 
+
+	if(pos >= 0 && pos < agenda.length){//existe la posición en el array
+
+		document.getElementById('inicio').innerHTML = pos + 1;
+		var contacto = new Array(4);
+		contacto = agenda[pos];//recuperamos el contacto del array
+		
+		//Pasamos el contacto al formulario
+		document.getElementById('nombre').value = contacto[0];
+		document.getElementById('apellidos').value = contacto[1];
+		document.getElementById('telefono').value = contacto[2];
+		document.getElementById('nacimiento').value = contacto[3];
+	}
+	else{
+		document.getElementById('con').value = "";
+		alert("El contacto introducido no tiene una referencia válida");
+	}	
 }
 
-/*
-function insertar()
+function cargaPrimeros()
 {
-    var longitud = contactos.length;
-    var nuevo = new Array(4);
+		contactos = new Array('Cristina', 'Nuñez Gil', '666333777', '11/09/1993');		
+		guardar(contactos);
+		contactos = new Array('Carmen', 'Alvarez Gallardo', '777333555', '13/02/1990');		
+		guardar(contactos);
+		contactos = new Array('Carlos', 'Carrasco Bueno', '666222146', '08/01/1986');
+		guardar(contactos);
+		contactos = new Array('Juan', 'Garcia Perez', '959313114', '01/08/1996');
+		guardar(contactos);
+		contactos = new Array('Pepito', 'Perez Lopez', '959387489', '27/09/1931');	
+		guardar(contactos);
+		contactos = new Array('Ignacio', 'Gutierrez Silva', '777333222', '22/11/1987');
+		guardar(contactos);
+		document.getElementById('inicio').innerHTML = 1;
+		document.getElementById('fin').innerHTML = agenda.length;
+		resumen();//mostramos los datos en la tabla
+}
 
-    nuevo[0] = getElementById contenodor nombre..
-    nuevo[1] = getElementById contenedor formulario..
-    nuevo[2] = getElementById
-    nuevo[3] = getElementById
+//guarda el contacto al final del array
+function guardar(variable)
+{
+	agenda.push(variable);
+}
 
-    contactos.push(nuevo);//lo metemos al final
+function mostrarRegistro(cont)
+{
+	var pos = cont -1 ;//en el array es una posición menos
+	var contacto = new Array(4);
+	contacto = agenda[pos];//recuperamos el contacto del array
+	
+	//Pasamos el contacto al formulario
+	document.getElementById('nombre').value = contacto[0];
+	document.getElementById('apellidos').value = contacto[1];
+	document.getElementById('telefono').value = contacto[2];
+	document.getElementById('nacimiento').value = contacto[3];
+}
 
-    //mostramos el fin de la agenda
-    document.getElementById('final')=.innerHTML= contactos.length;
-}*/
+function mas()
+{
+	var posi = document.getElementById('inicio').innerHTML + 1;
+
+	if(posi <= agenda.length)
+	{
+		document.getElementById('inicio').innerHTML = posi;
+		mostrarRegistro(posi);
+	}
+}
+
+function menos()
+{
+	var pos = document.getElementById('inicio').innerHTML - 1;//posición anterior
+
+	if(pos > 0){
+		document.getElementById('inicio').innerHTML = pos;
+		mostrarRegistro(pos);
+	}
+}
+
+function vaciar()
+{
+	document.getElementById('nombre').value = "";
+	document.getElementById('apellidos').value = "";
+	document.getElementById('telefono').value = "";
+	document.getElementById('nacimiento').value = "";
+}
+
+function nuevo()
+{
+	//hay que filtrar los datos
+	Contacto = new Array(4);
+
+	Contacto[0] = document.getElementById('nombre').value;
+	Contacto[1] = document.getElementById('apellidos').value;
+	Contacto[2] = document.getElementById('telefono').value;
+	Contacto[3] = document.getElementById('nacimiento').value;
+	
+	agenda.push(Contacto);
+	document.getElementById('fin').innerHTML = agenda.length;
+	resumen();
+}
