@@ -187,7 +187,7 @@
                                         </div>
                                         <div class="panel-body">
                                             <div style="margin-bottom: 10px">
-                                                Mostrar: <input type="number" id="con" name="con" class="form-control">
+                                                <input type="number" id="con" name="con" class="form-control">
                                             </div>
                                             <div>
                                                 <button id="botonMostrar" class="btn btn-default" onClick="mostrarContacto(value)">Mostrar <span class="glyphicon glyphicon-eye-open"></span></button>
@@ -205,10 +205,12 @@
                                         <div class="panel-body">
                                             <div class="row" style="margin-bottom: 10px">
                                                 <div class="col-md-6">
+                                                    <span name="inicio" id="error"> </span>
                                                     <label for="nombre">Nombre:</label>
                                                     <input type="text" id="nombre" name="nombre" class="form-control">
+                                                    <span name="inicio" id="error_nombre">  </span>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6"><br>
                                                     <button class="btn btn-default" onClick="vaciar()" style="float: right">Nuevo</button>
                                                 </div>
                                             </div>
@@ -216,8 +218,9 @@
                                                 <div class="col-md-6">
                                                     <label for="apellidos">Apellidos:</label>
                                                     <input type="text" id="apellidos" name="apellidos" class="form-control">
+                                                    <span name="inicio" id="error_ape"> </span>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-6"><br>
                                                     <button class="btn btn-default" onClick="nuevo()" style="float: right">Guardar</button>
                                                 </div>
                                             </div>  
@@ -225,12 +228,14 @@
                                                 <div class="col-md-6">
                                                     <label for="telefono">Teléfono:</label>
                                                     <input type="text" id="telefono" name="telefono" class="form-control">
+                                                    <span name="inicio" id="error_tel"> </span>
                                                 </div>
                                             </div>  
                                             <div class="row" style="margin-bottom: 10px">
                                                 <div class="col-md-6">
                                                     <label for="nacimiento">Fecha de Nacimiento:</label>
                                                     <input type="text" id="nacimiento" name="nacimiento" class="form-control">
+                                                    <span name="inicio" id="error_nac"> </span>
                                                 </div>
                                             </div>                                            
                                         </div>

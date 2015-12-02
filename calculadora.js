@@ -291,8 +291,8 @@ function mostrarRegistro(cont)
 
 function mas()
 {
-	var posi = document.getElementById('inicio').innerHTML + 1;
-
+	var posi = document.getElementById('inicio').innerHTML;
+	posi++;
 	if(posi <= agenda.length)
 	{
 		document.getElementById('inicio').innerHTML = posi;
@@ -316,19 +316,136 @@ function vaciar()
 	document.getElementById('apellidos').value = "";
 	document.getElementById('telefono').value = "";
 	document.getElementById('nacimiento').value = "";
+	document.getElementById('error').innerHTML = "";
+	document.getElementById('error_ape').innerHTML = "";
+	document.getElementById('error_nombre').innerHTML = "";
+	document.getElementById('error_tel').innerHTML = "";
+	document.getElementById('error_nac').innerHTML = "";
 }
 
 function nuevo()
 {
-	//hay que filtrar los datos
+	
 	Contacto = new Array(4);
 
 	Contacto[0] = document.getElementById('nombre').value;
 	Contacto[1] = document.getElementById('apellidos').value;
 	Contacto[2] = document.getElementById('telefono').value;
 	Contacto[3] = document.getElementById('nacimiento').value;
+
+	var error = filtrar(Contacto);
+	if(error == true)//so hay errores no guardamos
+	{
+		document.getElementById('error').innerHTML = '<span class="label label-danger"> No se ha guardado el contacto </span><br>';
+	}
+	else
+	{
+		var pos = document.getElementById('con').value;
+		agenda[pos]=Contacto;
+		document.getElementById('fin').innerHTML = agenda.length;
+		resumen();
+	}
+}
+
+function filtrar(campos)
+{
+	var bool = false;
+	var errnom = fnombre(campos[0]);
+	var errape = fape(campos[1]);
+	var errtel = ftel(campos[2]);
+	var errnac = fnac(campos[3]);
+	if(errnom != '')
+	{
+		document.getElementById('error_nombre').innerHTML = errnom; 
+		bool = true;
+	}
+	if(errape != '')
+	{
+		document.getElementById('error_ape').innerHTML = errape; 
+		bool = true;
+	}
+	if(errape != '')
+	{
+		document.getElementById('error_tel').innerHTML = errtel; 
+		bool = true;
+	}
+	if(errnac != '')
+	{
+		document.getElementById('error_nac').innerHTML = errnac; 
+		bool = true;
+	}
+
+	return bool;
+}
+
+function fnombre(apellido)
+{
+	var dev = '';
+	if(apellido == '')
+	{
+		dev = '<span class="label label-info">Debes introducir un apellido</span>';
+	}
+	else
+	{
+	if(isNaN(apellido) == false)
 	
-	agenda.push(Contacto);
-	document.getElementById('fin').innerHTML = agenda.length;
-	resumen();
+		dev = '<span class="label label-info">El apellido solo puede contener letras[a-z]</span>';
+	}
+	if(apellido.length>15)
+	{
+		dev = '<span class="label label-info">El apellido es demasiado largo</span>';
+	}
+	return dev;
+}
+
+function fape(nombre)
+{
+	var dev = '';
+	if(nombre == '')
+	{
+		dev = '<span class="label label-info">Debes introducir un nombre</span>';
+	}
+	else
+	{
+	if(isNaN(nombre) == false)
+	
+		dev = '<span class="label label-info">El nombre solo puede contener letras[a-z]</span>';
+	}
+	if(nombre.length>15)
+	{
+		dev = '<span class="label label-info">El nombre es demasiado largo</span>';
+	}
+	return dev;
+}
+
+function ftel(telefono)
+{
+	var dev = '';
+	if(telefono == '')
+	{
+		dev = '<span class="label label-info">Debes introducir un telefono</span>';
+	}
+	else
+	{
+		if(isNaN(telefono) == true)
+		dev = '<span class="label label-info">El telefono solo puede contener numeros[0-9]</span>';
+	}
+
+	if(telefono.length>9)
+	{
+		dev = '<span class="label label-info">El telefono es demasiado largo</span>';
+	}
+	return dev;
+}
+
+function fnac(fecha)
+{
+	var dev = '';
+	var ExpReg = /^(0?[1-9]|[12][0-9]|3[01])[\/](0?[1-9]|1[012])[/\\/](19|20)\d{2}$/;
+
+	if(ExpReg.test(fecha) == false)
+	{
+		dev = '<span class="label label-info">La fecha introducida no es correcta</span>';
+	}
+	return dev;
 }
