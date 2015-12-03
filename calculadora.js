@@ -270,7 +270,7 @@ function botonBorrar()
 	var posAgenda = document.getElementById('inicio');
 	eliminar(posAgenda);
 	posAgenda = agenda.length;
-	resumen(0);
+	resumen(posAgenda);
 	document.getElementById('fin').innerHTML = agenda.length;
 }
 
@@ -357,6 +357,7 @@ function nuevo()
 	}
 	resumen(lee);
 }
+
 
 function filtrar(campos)
 {
