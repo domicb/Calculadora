@@ -197,9 +197,9 @@ function porcentaje()
 var agenda = new Array();
 var contactos = new Array();
 
-function resumen()
+function resumen(emp)
 {
-	for(var i = 0; i < agenda.length; i++) {
+	for(var i = emp; i < agenda.length; i++) {
 		// Creamos nodos de tipo Element 
 	    var tr = document.createElement("tr"); 
 	    var td = document.createElement("td"); 	
@@ -212,15 +212,11 @@ function resumen()
 			
 			var contacto = agenda[i];	
 			var td = document.createElement("td"); 
-
 			// Crear nodo de tipo Text 
 			var contenido = document.createTextNode(contacto[j]); 
-
 			// Añadir el nodo Text como hijo del nodo 	Element 
 			td.appendChild(contenido); 
-
 			tr.appendChild(td); 
-
 			// Añadir el nodo Element como hijo de la pagina 
 			document.getElementById('resumen').appendChild(tr);
 		}
@@ -232,7 +228,6 @@ function mostrarContacto()
 {
 	//recojemos el id a mostrar
 	var pos = document.getElementById('con').value - 1; 
-
 	if(pos >= 0 && pos < agenda.length){//existe la posición en el array
 
 		document.getElementById('inicio').innerHTML = pos + 1;
@@ -267,7 +262,21 @@ function cargaPrimeros()
 		guardar(contactos);
 		document.getElementById('inicio').innerHTML = 1;
 		document.getElementById('fin').innerHTML = agenda.length;
-		resumen();//mostramos los datos en la tabla
+		resumen(0);//mostramos los datos en la tabla
+}
+
+function botonBorrar()
+{
+	var posAgenda = document.getElementById('inicio');
+	eliminar(posAgenda);
+	posAgenda = agenda.length;
+	resumen(0);
+	document.getElementById('fin').innerHTML = agenda.length;
+}
+
+function eliminar(reg)
+{
+	agenda.splice(reg,1);
 }
 
 //guarda el contacto al final del array
@@ -341,10 +350,12 @@ function nuevo()
 	else
 	{
 		var pos = document.getElementById('con').value;
-		agenda[pos]=Contacto;
+		guardar(Contacto);
+		vaciar();
 		document.getElementById('fin').innerHTML = agenda.length;
-		resumen();
+		var lee = agenda.length -1;	
 	}
+	resumen(lee);
 }
 
 function filtrar(campos)
