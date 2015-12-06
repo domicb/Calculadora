@@ -265,18 +265,29 @@ function cargaPrimeros()
 		resumen(0);//mostramos los datos en la tabla
 }
 
-function botonBorrar()
-{
-	var posAgenda = document.getElementById('inicio');
-	eliminar(posAgenda);
-	posAgenda = agenda.length;
-	resumen(posAgenda);
-	document.getElementById('fin').innerHTML = agenda.length;
+function actualizar(){
+	document.getElementById('resumen').innerHTML = '';
+	resumen(0);
 }
 
 function eliminar(reg)
 {
 	agenda.splice(reg,1);
+	actualizar();
+}
+
+function botonBorrar()
+{
+	var posAgenda = document.getElementById('inicio').innerHTML;
+	posAgenda = posAgenda -1;
+	eliminar(posAgenda);
+	document.getElementById('fin').innerHTML = agenda.length;
+	if(document.getElementById('inicio').innerHTML <= 0)
+	{
+
+	}
+	else
+		{document.getElementById('inicio').innerHTML = posAgenda; }	
 }
 
 //guarda el contacto al final del array
@@ -349,7 +360,7 @@ function nuevo()
 	}
 	else
 	{
-		var pos = document.getElementById('con').value;
+		//var pos = document.getElementById('con').value;
 		guardar(Contacto);
 		vaciar();
 		document.getElementById('fin').innerHTML = agenda.length;
@@ -437,16 +448,19 @@ function ftel(telefono)
 	{
 		dev = '<span class="label label-info">Debes introducir un telefono</span>';
 	}
-	else
+	else	
 	{
 		if(isNaN(telefono) == true)
-		dev = '<span class="label label-info">El telefono solo puede contener numeros[0-9]</span>';
+		{ dev = '<span class="label label-info">El telefono solo puede contener numeros[0-9]</span>';}
+	else
+	{
+		if(telefono.length>9)
+		{
+			dev = '<span class="label label-info">El telefono es demasiado largo</span>';
+		}
 	}
 
-	if(telefono.length>9)
-	{
-		dev = '<span class="label label-info">El telefono es demasiado largo</span>';
-	}
+
 	return dev;
 }
 
