@@ -314,7 +314,7 @@ function mostrarRegistro(cont)
     document.getElementById('telefono').value = contacto[2];
     document.getElementById('nacimiento').value = contacto[3];
 }
-
+//cambiamos la posicion con innerHTML
 function mas()
 {
     var posi = document.getElementById('inicio').innerHTML;
@@ -325,7 +325,7 @@ function mas()
         mostrarRegistro(posi);
     }
 }
-
+//cambiamos la posicion con innerHTML
 function menos()
 {
     var pos = document.getElementById('inicio').innerHTML - 1;//posiciÃ³n anterior
@@ -335,7 +335,7 @@ function menos()
         mostrarRegistro(pos);
     }
 }
-
+//vaciamos todos los campos
 function vaciar()
 {
     document.getElementById('nombre').value = "";
@@ -348,7 +348,7 @@ function vaciar()
     document.getElementById('error_tel').innerHTML = "";
     document.getElementById('error_nac').innerHTML = "";
 }
-
+//funcion que añade un nuevo contacto
 function nuevo()
 {
     Contacto = new Array(4);
@@ -373,7 +373,7 @@ function nuevo()
     resumen(lee);
 }
 
-
+//filtramos según el campo
 function filtrar(campos)
 {
     var bool = false;
